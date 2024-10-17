@@ -19,7 +19,6 @@ Change list:
 - Remove `HtmlRspackPlugin` dependency and use `rspack.HtmlRspackPlugin` instead
 - Remove `copy-webpack-plugin` dev dependency and use `rspack.CopyRspackPlugin` instead
 - Remove `mini-css-extract-plugin` dev dependency and use `rspack.CssExtractRspackPlugin` instead
-- Fix the test cases
 
 
 Motivation
