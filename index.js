@@ -386,16 +386,20 @@ function HtmlRspackTagsPlugin (options) {
 
   const shouldSkip = getShouldSkip(validatedOptions.files);
 
+  // Allows tests to be run with html-webpack-plugin v4
+  const htmlPluginName = isDefined(options.htmlPluginName) ? options.htmlPluginName : 'HtmlRspackPlugin';
+
   this.options = {
     ...validatedOptions,
-    shouldSkip
+    shouldSkip,
+    htmlPluginName
   };
 }
 
 HtmlRspackTagsPlugin.prototype.apply = function (compiler) {
   const webpack = compiler.webpack;
   const { options } = this;
-  const { shouldSkip } = options;
+  const { shouldSkip, htmlPluginName } = options;
   const { scripts, scriptsPrepend, scriptsAppend, linksPrepend, linksAppend, metas } = options;
 
   const externals = compiler.options.externals || {};
@@ -576,7 +580,7 @@ HtmlRspackTagsPlugin.prototype.apply = function (compiler) {
       }
     };
 
-    const HtmlWebpackPlugin = webpack.HtmlRspackPlugin;
+    const HtmlWebpackPlugin = htmlPluginName === 'HtmlRspackPlugin' ? webpack.HtmlRspackPlugin : require(htmlPluginName);
     if (HtmlWebpackPlugin.getCompilationHooks) {
       const hooks = HtmlWebpackPlugin.getCompilationHooks(compilation);
       const htmlPlugins = compilation.options.plugins.filter(plugin => plugin instanceof HtmlWebpackPlugin);
