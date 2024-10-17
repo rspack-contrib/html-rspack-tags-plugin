@@ -1,6 +1,6 @@
 {
   "name": "html-rspack-tags-plugin",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "lets you define html tags to inject with HtmlRspackPlugin",
   "main": "index.js",
   "types": "typings.d.ts",
@@ -16,12 +16,14 @@
     "pretest": "semistandard",
     "test": "jasmine",
     "testfilter": "jasmine --filter=\"name of suite or test\"",
-    "debug": "node-debug jasmine"
+    "debug": "node-debug jasmine",
+    "release": "node ./scripts/release.mjs"
   },
   "semistandard": {
     "ignore": [
       "spec/**/*-bundle.js",
-      "spec/dist/**"
+      "spec/dist/**",
+      "scripts/**"
     ]
   },
   "unmockedModulePathPatterns": [
@@ -59,11 +61,20 @@
     "rimraf": "^3.0.2",
     "semistandard": "^16.0.1",
     "style-loader": "^3.3.1",
-    "@rspack/core": "^1.0.13"
+    "@rspack/core": "^1.0.13",
+    "execa": "9.3.0",
+    "fs-extra": "11.2.0",
+    "semver": "7.6.3"
   },
   "dependencies": {
     "glob": "^7.2.0",
     "minimatch": "^3.0.4",
     "slash": "^3.0.0"
+  },
+  "packageManager": "pnpm@9.6.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
   }
 }
